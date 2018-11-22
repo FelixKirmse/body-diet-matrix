@@ -18,6 +18,7 @@ import BarCodeReader from "./components/BarCodeReader.vue";
 import NutritionFacts from "./components/NutritionFacts.vue";
 import NoResults from "./components/NoResults.vue";
 import { VIEW_HOME, VIEW_NOT_FOUND, VIEW_BARCODE_READER, VIEW_NUTRITION } from "./store";
+import unirest from "unirest";
 
 export default {
   name: "app",
@@ -27,6 +28,15 @@ export default {
     VIEW_BARCODE_READER,
     VIEW_NUTRITION
   }),
+  mounted() {
+    unirest
+      .get("https://toto-vrty-v1.p.rapidapi.com/user/toto-castaldi")
+      .header("X-Mashape-Key", "0rNhl0x3XrmshOR4YmmFcBH4CVfMp14NEPmjsn1u6Eklq5nUKW")
+      .header("X-Mashape-Host", "toto-vrty-v1.p.rapidapi.com")
+      .end(function (result) {
+        console.log(result.status, result.headers, result.body);
+      });
+  },
   components: {
     Home,
     Nav,
